@@ -1,19 +1,24 @@
-def f1():
-    print('From f1')
+# Sum of Odd placed Even Digits
+import sys
 
-def f2():
-    print('From f2')
+def sum_of_odd_placed_even_digits(number):
+    sum1 = 0
+    sum2 = 0
+    flip = True
+    while number > 0:
+        digit = number % 10
+        number = number // 10
+        if digit % 2 == 0:
+            if flip:
+                sum1 += digit
+            else:
+                sum2 += digit
+        flip = not flip
+    if flip:
+        return sum2
+    return sum1
 
-def f3():
-    print('From f3')
+input_number = int(sys.argv[1])
+sum_of_digits = sum_of_odd_placed_even_digits(input_number)
 
-function_name = input('Enter function name:')
-functions = {
-    'f1' : f1,
-    'f2' : f2,
-    'f3' : f3
-}
-if function_name in functions:
-    functions[function_name]()
-
-exec(function_name + '()')
+print(f'Sum of Odd placed Even digits of {input_number} is {sum_of_digits}')
